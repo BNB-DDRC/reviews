@@ -1,20 +1,34 @@
-API
+# API
+Routes
 
-URL
-localhost:3003/rooms/:id
+## URL
+localhost:3003/rooms/:roomId
+
 Using the entrypoint of URL, dynamically render the room page based on id.
 
-<!-- Read / GET - read an item -->
+## POST
+localhost:3003/rooms/:roomId/newId
 
-GET
+Create new review with blah blah.
 
-<!-- Create / POST - create a new item -->
+## GET
+localhost:3003/rooms/:roomId
 
-POST
+Get all reviews for given room listed.
 
-<!-- Update / PUT - update an item -->
+## UPDATE
+localhost:3003/rooms/:roomId/reviewId
 
-UPDATE
-localhost:3003/rooms/:id
+Update specific reviewID for room listed.
 
-<!-- Delete / DELETE - delete an item -->
+## DELETE
+localhost:3003/rooms/:roomId/reviewId
+
+Delete specific review for room listed.
+
+## Installation
+In root directory, use [node package manager](https://www.npmjs.com/get-npm) to install
+```bash
+npm install
+```
+
