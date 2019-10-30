@@ -2,9 +2,9 @@
 This service allows CRUD operations.
 
 ## Related Projects
-1. link to Carousel github
-2. link to Reservations github
-3. link to Calendar github
+1. https://github.com/BNB-DDRC/photo-gallery
+2. https://github.com/BNB-DDRC/reservations
+3. https://github.com/BNB-DDRC/calendar
 
 
 ## Table of Contents
