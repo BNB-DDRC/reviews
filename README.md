@@ -16,7 +16,9 @@ This service allows CRUD operations.
 ## API Documentation
 
 ### URL
-localhost:3003/rooms/:roomId
+
+localhost:3003/rooms/
+Get all rooms
 
 Using the entrypoint of URL, dynamically render the room page based on id.
 
@@ -26,7 +28,7 @@ localhost:3003/rooms/:roomId/newId
 Create new review with new information.
 
 ### GET
-localhost:3003/rooms/:roomId
+localhost:3003/rooms/:roomId/reviews
 
 Get all reviews for given room listed.
 
@@ -36,7 +38,7 @@ localhost:3003/rooms/:roomId/reviewId
 Update specific review with id for room listed.
 
 ### DELETE
-localhost:3003/rooms/:roomId/reviewId
+localhost:3003/rooms/roomId/reviewId
 
 Delete specific review with id for room listed.
 
