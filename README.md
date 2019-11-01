@@ -20,7 +20,7 @@ This service allows CRUD operations.
 Create new review with new information.
 
 ```bash
-POST /:roomId/newId
+POST /:roomId/reviews
 ```
 
 #### Body
