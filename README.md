@@ -59,12 +59,12 @@ GET /:roomId/reviews
 | date          | date          | Date of posted review |
 | text          | string        | User review body     |
 | avgOverallRating| float       | Average overall rating of the room from all reviews. 
-| avgLocationRating| float      | Average location rating of the room from all the views.     |  
-| avgCheckInRating | float      | Average check-in rating of the room from all the views.     | 
-| avgValueRating   | float      | Average value rating of the room from all the views.     | 
-| avgCommunicationRating | float| Average communication rating of the room from all the views.     | 
-| avgAccuracyRating | float | Average accuracy rating of the room from all the views.|
-| avgCleanlinessRating | float | Average cleanliness rating of the room from all the views.|
+| avgLocationRating| float      | Average location rating of the room from all reviews.     |  
+| avgCheckInRating | float      | Average check-in rating of the room from all reviews.     | 
+| avgValueRating   | float      | Average value rating of the room from all reviews.     | 
+| avgCommunicationRating | float| Average communication rating of the room from all reviews.     | 
+| avgAccuracyRating | float | Average accuracy rating of the room from all reviews.|
+| avgCleanlinessRating | float | Average cleanliness rating of the room from all reviews.|
 
 ### UPDATE
 Update specific review with id for room listed.
