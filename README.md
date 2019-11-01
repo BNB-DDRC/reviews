@@ -15,32 +15,34 @@ This service allows CRUD operations.
 
 ## API Documentation
 
-### URL
 
-localhost:3003/rooms/
-Get all rooms
-
-Using the entrypoint of URL, dynamically render the room page based on id.
-
-### POST
-localhost:3003/rooms/:roomId/newId
-
+### Create (POST)
 Create new review with new information.
 
-### GET
-localhost:3003/rooms/:roomId/reviews
+```bash
+POST /:roomId/newId
+```
 
+
+### Read (GET)
 Get all reviews for given room listed.
 
-### UPDATE
-localhost:3003/rooms/:roomId/reviewId
+```bash
+GET /:roomId/reviews
+```
 
+### UPDATE
 Update specific review with id for room listed.
 
-### DELETE
-localhost:3003/rooms/roomId/reviewId
+```bash
+UPDATE /:roomId/:reviewId
+```
 
+### DELETE
 Delete specific review with id for room listed.
+```bash
+DELETE /:roomId/:reviewId
+```
 
 ## Installation
 1. In root directory, use [node package manager](https://www.npmjs.com/get-npm) to install dependencies.
