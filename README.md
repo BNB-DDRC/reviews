@@ -33,7 +33,8 @@ POST /:roomId/reviews
 | checkInRating | integer       | Required. Check-in rating for reviewed room.     |
 | value         | integer       | Required. Value rating for reviewed room.    |
 | communication | integer       | Required. Communication rating for reviewed room.   |
-| accuracy      | cleanliness   | Required. Accuracy rating for reviewed room.    |
+| accuracy      | integer       | Required. Accuracy rating for reviewed room.    |
+| cleanliness   | integer       | Required. Cleanliness rating for reviewed room.    |
 
 
 
@@ -73,10 +74,18 @@ Update specific review with id for room listed.
 UPDATE /:roomId/:reviewId
 ```
 
-#### Parameter
+#### Parameters
 | Name          | Type          | Description   |
 | :------------ | :-------------| :-------------|
-| reviewId      | integer       | Required. Review identifier for specified review to be updated.|
+| roomId        | integer       | Required. Room identifier for reviewed room.    |
+| reviewId      | integer       | Required. Review identifier for review.      |
+| text          | string        | Optional. The review description.     |
+| locationRating| integer       | Optional. Location rating ror reviewed room.     |
+| checkInRating | integer       | Optional. Check-in rating for reviewed room.     |
+| value         | integer       | Optional. Value rating for reviewed room.    |
+| communication | integer       | Optional. Communication rating for reviewed room.   |
+| accuracy      | integer       | Optional. Accuracy rating for reviewed room.    |
+| cleanliness   | integer       | Optional. Cleanliness rating for reviewed room.    |
 
 
 ### DELETE
@@ -86,6 +95,7 @@ Delete specific review with id for room listed.
 DELETE /:roomId/:reviewId
 ```
 
+#### Parameters
 | Name          | Type          | Description   |
 | :------------ | :-------------| :-------------|
 | reviewId      | integer       | Required. Review identifier for specified review to be deleted.|
