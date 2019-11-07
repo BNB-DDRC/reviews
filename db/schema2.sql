@@ -1,45 +1,50 @@
-DROP DATABASE IF EXISTS testDB;
+DROP DATABASE IF EXISTS DDRCReviews;
 
-CREATE DATABASE testDB;
+CREATE DATABASE DDRCReviews;
 
--- \c testDB;
+-- DROP SCHEMA reviewSchema CASCADE;
 
-DROP SCHEMA myschema CASCADE;
+-- CREATE SCHEMA IF NOT EXISTS reviewSchema;
 
-CREATE SCHEMA IF NOT EXISTS myschema;
+DROP TABLE IF EXISTS reviews CASCADE;
+DROP TABLE IF EXISTS listings;
+DROP TABLE IF EXISTS guests;
 
-DROP TABLE reviews;
-
-CREATE TABLE reviews(
-  review_id SERIAL NOT NULL PRIMARY KEY,
-  house_id INT,
-  guest_name VARCHAR(25) NOT NULL,
-  date_created date,
-  guest_review VARCHAR(100) NOT NULL,
-  host_response VARCHAR(100),
-  location_rating INT NOT NULL,
-  checkIn_rating INT NOT NULL,
-  value_rating INT NOT NULL,
-  communication_rating INT NOT NULL,
-  accuracy_rating INT NOT NULL,
-  cleanliness_rating INT NOT NULL,
-  user_id INT NOT NULL
---   FOREIGN KEY user_id REFERENCES guests(user_id),
---   FOREIGN KEY house_id REFERENCES listings(house_id)
+CREATE TABLE listings (
+  house_id SERIAL PRIMARY KEY,
+  host_name VARCHAR(100),
+  host_image VARCHAR(100)
 );
 
--- CREATE TABLE listings (
-  
---   host_name VARCHAR(25),
---   host_mage VARCHAR(25),
---   house_id serial REFERENCES reviews(house_id)
--- --   PRIMARY KEY (house_id)
--- );
+CREATE TABLE guests (
+  user_id SERIAL PRIMARY KEY,
+  user_name VARCHAR(100),
+  user_image VARCHAR(100)
+);
 
--- CREATE TABLE guests(
+CREATE TABLE reviews (
+  review_id SERIAL PRIMARY KEY,
+--   user_id INT REFERENCES guests(user_id),
+--   house_id INT REFERENCES listings(house_id),
+  user_id INT REFERENCES guests(user_id),
+  house_id INT REFERENCES listings(house_id),
+  date_created VARCHAR(100),
+  guest_review VARCHAR(500) NOT NULL,
+  host_response VARCHAR(500),
+  location_rating FLOAT NOT NULL,
+  checkIn_rating FLOAT NOT NULL,
+  value_rating FLOAT NOT NULL,
+  communication_rating FLOAT NOT NULL,
+  accuracy_rating FLOAT NOT NULL,
+  cleanliness_rating FLOAT NOT NULL
+);
 
---   user_name VARCHAR(25),
---   user_image VARCHAR(25),
---   user_id serial REFERENCES reviews(user_id)
--- --   PRIMARY KEY (user_id)
--- );
+-- CREATE TABLE listings_by_review(
+--     user_id INT REFERENCES guests(user_id),
+--     house_id INT REFERENCES listings(house_id),
+--     review_id INT REFERENCES reviews(review_id)
+-- )
+
+COPY listings FROM '/Users/richardcao/Documents/hackreactor/badqueso/reviews/listings.csv' DELIMITERS ',' CSV header;
+COPY guests FROM '/Users/richardcao/Documents/hackreactor/badqueso/reviews/guests.csv' DELIMITERS ',' CSV header;
+COPY reviews FROM '/Users/richardcao/Documents/hackreactor/badqueso/reviews/reviews.csv' DELIMITERS ',' CSV header;

@@ -1,8 +1,10 @@
-DROP KEYSPACE IF EXISTS donutstore;
+DROP KEYSPACE IF EXISTS DDRCReviews;
 
-CREATE KEYSPACE IF NOT EXISTS donutstore WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'};
+CREATE KEYSPACE IF NOT EXISTS DDRCReviews WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'};
 
-CREATE TABLE donutstore.reviews (
+USE DDRCReviews;
+
+CREATE TABLE DDRCReviews.reviews (
     house_id INT,
     review_id INT,
     accuracy_rating FLOAT,
@@ -20,5 +22,7 @@ CREATE TABLE donutstore.reviews (
     value_rating FLOAT,
     PRIMARY KEY (house_id, review_id)
 );
+    -- WITH CLUSTERING ORDER BY (review_id DESC);
+-- );
 
--- INSERT INTO donutstore.reviews (house_id, review_id, guest_name, date_created, guest_review, guest_image) VALUES (1, 1, 'bob smith', toTimeStamp(now()), 'place is good', 'random guest image url');
+COPY reviews(house_id, review_id, accuracy_rating, checkin_rating, cleanliness_rating, communication_rating, date_created, guest_image, guest_name, guest_review, host_image, host_name, host_response, location_rating, value_rating) FROM '/Users/richardcao/Documents/hackreactor/badqueso/reviews/full_data.csv' WITH HEADER=TRUE;

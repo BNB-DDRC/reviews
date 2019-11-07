@@ -1,1 +1,10 @@
 node_modules
+#csvs
+data.csv
+full_data.csv
+guests.csv
+listings.csv
+reviews.csv
+reviews2.csv
+test_data.csv
+test.csv
