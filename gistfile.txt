@@ -1,0 +1,55 @@
+import http from "k6/http";
+import { check, sleep } from "k6";
+
+export let options = {
+  vus: 10,
+  duration: "30s"
+};
+
+export default function() {
+    let res = http.get("http://test.loadimpact.com");
+    check(res, {
+      "status was 200": (r) => r.status == 200,
+      "transaction time OK": (r) => r.timings.duration < 200
+    });
+    sleep(1);
+  };
+
+
+          /\      |‾‾|  /‾‾/  /‾/   
+     /\  /  \     |  |_/  /  / /    
+    /  \/    \    |      |  /  ‾‾\  
+   /          \   |  |‾\  \ | (_) | 
+  / __________ \  |__|  \__\ \___/ .io
+
+  execution: local
+     output: -
+     script: script.js
+
+    duration: 30s, iterations: -
+         vus: 10,  max: 10
+
+    done [==========================================================] 30s / 30s
+
+    ✗ transaction time OK
+     ↳  61% — ✓ 154 / ✗ 96
+    ✓ status was 200
+
+    checks.....................: 80.80% ✓ 404  ✗ 96  
+    data_received..............: 332 kB 11 kB/s
+    data_sent..................: 20 kB  679 B/s
+    http_req_blocked...........: avg=8.67ms   min=1µs     med=3µs      max=219.51ms p(90)=6µs      p(95)=17.49µs 
+    http_req_connecting........: avg=8.57ms   min=0s      med=0s       max=214.56ms p(90)=0s       p(95)=0s      
+    http_req_duration..........: avg=207.52ms min=89.42ms med=182.57ms max=506.02ms p(90)=297.43ms p(95)=458.68ms
+    http_req_receiving.........: avg=1ms      min=28µs    med=105µs    max=200.27ms p(90)=458.3µs  p(95)=755.64µs
+    http_req_sending...........: avg=157.44µs min=7µs     med=15µs     max=3.45ms   p(90)=35.1µs   p(95)=86.24µs 
+    http_req_tls_handshaking...: avg=0s       min=0s      med=0s       max=0s       p(90)=0s       p(95)=0s      
+    http_req_waiting...........: avg=206.36ms min=88.95ms med=182.46ms max=505.68ms p(90)=294.9ms  p(95)=458.56ms
+    http_reqs..................: 250    8.333326/s
+    iteration_duration.........: avg=1.22s    min=1.09s   med=1.19s    max=1.5s     p(90)=1.35s    p(95)=1.46s   
+    iterations.................: 240    7.999993/s
+    vus........................: 10     min=10 max=10
+    vus_max....................: 10     min=10 max=10
+
+
+
