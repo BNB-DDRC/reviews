@@ -2,25 +2,25 @@ const faker = require('faker');
 const fs = require('fs');
 var DateGenerator = require('random-date-generator');
 
-const writeData = fs.createWriteStream('reviews2.csv');
+// const writeData = fs.createWriteStream('reviews2.csv');
 
-writeData.write(
-  'house_id, review_id, accuracy_rating, checkin_rating, cleanliness_rating, communication_rating, date_created, guest_image, guest_name, guest_review, host_image, host_name, host_response, location_rating, value_rating\n',
-  'utf8'
-);
+// writeData.write(
+//   'house_id, review_id, accuracy_rating, checkin_rating, cleanliness_rating, communication_rating, date_created, guest_image, guest_name, guest_review, host_image, host_name, host_response, location_rating, value_rating\n',
+//   'utf8'
+// );
 
 //sql stuff
 
 const writeDataToListings = fs.createWriteStream('listings.csv');
 const writeDataToGuests = fs.createWriteStream('guests.csv');
-const writeDataToReviews = fs.createWriteStream('reviews.csv');
+// const writeDataToReviews = fs.createWriteStream('reviews.csv');
 
 writeDataToListings.write('house_id, host_name, host_image\n', 'utf8');
 writeDataToGuests.write('user_id, user_name, user_image\n', 'utf8');
-writeDataToReviews.write(
-  'review_id, user_id, house_id, date_created, guest_review, host_response, location_rating, checkIn_rating, value_rating, communication_rating, accuracy_rating, cleanliness_rating\n',
-  'utf8'
-);
+// writeDataToReviews.write(
+//   'review_id, user_id, house_id, date_created, guest_review, host_response, location_rating, checkIn_rating, value_rating, communication_rating, accuracy_rating, cleanliness_rating\n',
+//   'utf8'
+// );
 
 function writeTenMillionReviews(writer, encoding, callback) {
   var startDate = new Date(2018, 01, 01);
@@ -251,14 +251,14 @@ function writeTenMillionR(writer, encoding, callback) {
 //   writeData.end();
 // });
 
-// writeTenMillionListings(writeDataToListings, 'utf-8', () => {
-//   writeDataToListings.end();
-// });
-
-// writeTwoHundredMillionGuests(writeDataToGuests, 'utf-8', () => {
-//   writeDataToGuests.end();
-// });
-
-writeTenMillionR(writeDataToReviews, 'utf-8', () => {
-  writeDataToReviews.end();
+writeTenMillionListings(writeDataToListings, 'utf-8', () => {
+  writeDataToListings.end();
 });
+
+writeTwoHundredMillionGuests(writeDataToGuests, 'utf-8', () => {
+  writeDataToGuests.end();
+});
+
+// writeTenMillionR(writeDataToReviews, 'utf-8', () => {
+//   writeDataToReviews.end();
+// });
