@@ -1,10 +1,10 @@
-require('newrelic');
-const compression = require('compression');
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
+require("newrelic");
+const compression = require("compression");
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
 // const Review = require('../db/reviewsDb.js');
-const cassandraDB = require('../db/cassandraDB.js');
+const cassandraDB = require("../db/cassandraDB.js");
 
 const app = express();
 
@@ -39,29 +39,31 @@ const getAverage = function(array, key) {
   }
 };
 
+app.use(bodyParser.json());
+
 app.use(compression({ filter: shouldCompress }));
 
 function shouldCompress(req, res) {
-  if (req.headers['x-no-compression']) {
+  if (req.headers["x-no-compression"]) {
     return false;
   }
   return compression.filter(req, res);
 }
 
-app.get('/favicon.ico', (req, res) => res.status(204));
+app.get("/favicon.ico", (req, res) => res.status(204));
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
 });
 
-app.use('/', express.static(path.join(__dirname, '../public')));
+app.use("/", express.static(path.join(__dirname, "../public")));
 
-app.use('/rooms/:id', express.static(path.join(__dirname, '../public'))); //rooms/:id
+app.use("/rooms/:id", express.static(path.join(__dirname, "../public"))); //rooms/:id
 
 // app.get('/:id', (req, res) => {
 //   var locationReviewsObject = {};
@@ -98,13 +100,23 @@ app.use('/rooms/:id', express.static(path.join(__dirname, '../public'))); //room
 //       res.send(locationReviewsObject);
 //     });
 // });
-app.get('/:id', (req, res) => {
-  cassandraDB.getAllReviewIds((err, result) => {
+app.get("/:houseId/reviews", (req, res) => {
+  cassandraDB.getAllReviewIds(req, res, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.send(result.rows);
       // res.status(200).json(result);
+    }
+  });
+});
+
+app.post("/:houseId/reviews", (req, res) => {
+  cassandraDB.postReview(req, res, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.sendStatus(200);
     }
   });
 });
